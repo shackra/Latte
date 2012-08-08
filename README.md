@@ -58,6 +58,7 @@ Dependencies
 This application requires:
 
 - `xprop` to detect active window title for log tracking
+- `xprintidle` to detect if the user is active
 
 Goal
 ----

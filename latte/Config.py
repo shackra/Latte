@@ -26,6 +26,7 @@ class Config(object):
         self.set('stats_path', 'stats/')
         self.set('sleep_time', 5)
         self.set('autosave_time', 3600)
+        self.set('idle_time', 900)
 
     def set(self, name, value):
         """ Set config value. """
@@ -49,9 +50,10 @@ class Config(object):
 
     def overwrite_with_user_configs(self, parser):
         """ Overwrite default configs with user-defined configs. """
-        for item in ['app_path', 'stats_path']:
+        for item in ['stats_path']:
             self.set(item, parser.get('main', item))
-        for item in ['sleep_time', 'autosave_time']:
+        # Numeric values
+        for item in ['sleep_time', 'autosave_time', 'idle_time']:
             self.set(item, parser.getint('main', item))
 
     def get(self, item):

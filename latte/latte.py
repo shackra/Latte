@@ -38,23 +38,28 @@ class Latte(object):
 
     def run(self):
         """ Primary application loop. """
-        duration = 0
+        last_autosave = 0
         try:
             while True:
                 title = get_active_window_title()
-                if title:
+                idle = False
+                if self.configs.get('idle_time') and self.configs.get('idle_time') < get_idle_time():
+                    idle = True
+                if title and not idle:
                     self.tracker.log(title)
                     stats = self.tracker.get_window_stats(title)
                     print title, \
                         repr(stats['categories']), \
                         repr(stats['project']), \
                         stats['time']
+                elif idle:
+                    print 'Idling...'
 
                 time.sleep(self.configs.get('sleep_time'))
                 # Track time since last save and do autosaves
-                duration += self.configs.get('sleep_time')
-                if duration >= self.configs.get('autosave_time'):
-                    duration = 0
+                last_autosave += self.configs.get('sleep_time')
+                if last_autosave >= self.configs.get('autosave_time'):
+                    last_autosave = 0
                     self.tracker.dump_logs()
         except KeyboardInterrupt:
             print 'Exiting...'
@@ -71,6 +76,14 @@ def get_active_window_title():
         return window.communicate()[0].strip().split('"', 1)[-1][:-1]
     except:
         return ''
+
+def get_idle_time():
+    """ Fetches user idle time using xprintidle. """
+    try:
+        idle_time = subprocess.check_output(['xprintidle'])
+        return int(idle_time) / 1000 # from miliseconds to seconds
+    except OSError:
+        return 0
 
 
 if __name__ == '__main__':

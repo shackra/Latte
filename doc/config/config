@@ -12,3 +12,9 @@ sleep_time = 5
 # NOTE that with each write a new log file will be created
 # Default: 3600
 autosave_time = 3600
+
+# Duration after which the user is considered idle.
+# Does not track anything while the user is idle.
+# Set to 0 (zero) to disable it.
+# Default: 900 (15 minutes)
+idle_time = 900

@@ -19,7 +19,7 @@ class Analyzer(object):
         self.parse_time_args(args)
 
     def parse_time_args(self, args=[]):
-        self.since = 0
+        self.since = time.time() - 86400 # Default to 1 day
         if len(args) == 1:
             self.since = self.calculate_since(args[0])
         elif len(args) == 2 and args[1] in ['d', 'w', 'm']:
