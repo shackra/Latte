@@ -74,7 +74,7 @@ To build an Automatic Time Tracker for Linux that:
 Tasks
 -----
 
-Check our out [Pivotal tracker](https://www.pivotaltracker.com/projects/601587) for this project
+Check out our [https://github.com/flakas/Latte/issues](Issues page).
 
 License
 -------
