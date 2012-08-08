@@ -74,7 +74,7 @@ To build an Automatic Time Tracker for Linux that:
 Tasks
 -----
 
-Check out our [https://github.com/flakas/Latte/issues](Issues page).
+Check out our [Issues page](https://github.com/flakas/Latte/issues)
 
 License
 -------
