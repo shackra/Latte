@@ -58,7 +58,7 @@ class Config(object):
 
     def get(self, item):
         """ Fetches config item from the list. """
-        if item in self.configs.keys():
+        if self.configs.has_key(item):
             return self.configs[item]
         return None
 

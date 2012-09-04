@@ -34,13 +34,13 @@ class TimeTracker(object):
         That includes window time, category and project.
 
         """
-        if window in self.logs.keys():
+        if self.logs.has_key(window):
             return self.logs[window]
         return None
 
     def log(self, window):
         """ Logs window time, handles assigning to projects and categories. """
-        if not window in self.logs.keys():
+        if not self.logs.has_key(window):
             self.logs[window] = {
                 'time' : 0,
                 'categories' : [],
