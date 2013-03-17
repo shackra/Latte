@@ -20,13 +20,20 @@ class Config(object):
         self.create_default_configs()
         self.load_user_config(path)
 
+    def get_default_configs(self):
+        defaults = {
+            'app_path' : self.user_config_path,
+            'stats_path' : 'stats/',
+            'sleep_time' : 5,
+            'autosave_time' : 3600,
+            'idle_time' : 900
+        }
+        return defaults
+
     def load_default_configs(self):
         """ Load default config values. """
-        self.set('app_path', self.user_config_path)
-        self.set('stats_path', 'stats/')
-        self.set('sleep_time', 5)
-        self.set('autosave_time', 3600)
-        self.set('idle_time', 900)
+        for (key, value) in self.get_default_configs().items():
+            self.set(key, value)
 
     def set(self, name, value):
         """ Set config value. """

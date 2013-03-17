@@ -31,70 +31,71 @@ class Analyzer(object):
             if log_time <= 0: # Don't allow peeking into the future
                 return 0
             if multiplier:
-                if multiplier == 'd':
-                    log_time *= 86400 # 1 day
-                elif multiplier == 'w':
-                    log_time *= 604800 # 1 week
-                elif multiplier == 'm':
-                    log_time *= 2592000 # 1 month
+                multipliers = {
+                    'd' : 86400, # 1 day
+                    'w' : 604800, # 1 week
+                    'm' : 2592000 # 1 month
+                }
+                log_time *= multipliers[multiplier]
             return time.time() - log_time
         except ValueError:
             print 'Cannot convert time argument to integer'
             return False
 
-
     def run(self):
         """ Main analyzer loop """
         self.load_logs()
-        #print repr(self.logs)
         self.analyze()
+        self.print_log_data()
 
     def analyze(self):
-        """ Analyzes log data and prints out results """
+        """ Analyzes log data """
         if self.since:
             print 'Looking for log data since %s' % time.strftime('%d %b %Y %H:%M:%S', time.gmtime(self.since))
         if not self.logs:
             print 'There is no log data'
             return False
 
-        windows = {}
-        categories = {}
-        projects = {}
-        totalLogs = 0
-        totalTime = 0
+        self.windows = {}
+        self.categories = {}
+        self.projects = {}
+        self.totalLogs = 0
+        self.totalTime = 0
 
         # Log files
         for logFileKey in self.logs.keys():
             logFile = self.logs[logFileKey]
-            totalLogs += len(logFile)
+            self.totalLogs += len(logFile)
             # Individual log entries
             for logKey in logFile.keys():
                 log = logFile[logKey]
-                totalTime += log['time']
-                if not windows.has_key(logKey):
-                    windows[logKey] = log['time']
+                self.totalTime += log['time']
+                if not self.windows.has_key(logKey):
+                    self.windows[logKey] = log['time']
                 else:
-                    windows[logKey] += log['time']
-                if not projects.has_key(log['project']):
-                    projects[log['project']] = log['time']
+                    self.windows[logKey] += log['time']
+                if not self.projects.has_key(log['project']):
+                    self.projects[log['project']] = log['time']
                 else:
-                    projects[log['project']] += log['time']
+                    self.projects[log['project']] += log['time']
                 if 'categories' in log.keys():
                     if not log['categories']:
                         log['categories'] = ['(Uncategorized)']
                     # Assign time to individual categories
                     for cat in log['categories']:
-                        if not categories.has_key(cat):
-                            categories[cat] = log['time']
+                        if not self.categories.has_key(cat):
+                            self.categories[cat] = log['time']
                         else:
-                            categories[cat] += log['time']
+                            self.categories[cat] += log['time']
 
+
+    def print_log_data(self):
         print 'Total log files: %d\nTotal log entries: %d' % (len(self.logs), \
-                                                              totalLogs)
-        print 'Total logged time: %s' % self.normalize_time(totalTime)
+                                                              self.totalLogs)
+        print 'Total logged time: %s' % self.normalize_time(self.totalTime)
         print ''
         print 'Spent time on windows:'
-        sortedWindowTimes = sorted(windows.items(), \
+        sortedWindowTimes = sorted(self.windows.items(), \
                                    cmp=lambda x, y: cmp(x[1], y[1]), \
                                    reverse=True)
         for (window, spent) in sortedWindowTimes:
@@ -102,12 +103,12 @@ class Analyzer(object):
 
         print ''
         print 'Spent time on categories:'
-        for (category, spent) in categories.items():
+        for (category, spent) in self.categories.items():
             print '- "%s" : %s' % (category, self.normalize_time(spent))
 
         print ''
         print 'Spent time on projects:'
-        for (project, spent) in projects.items():
+        for (project, spent) in self.projects.items():
             print '- "%s" : %s' % (project, self.normalize_time(spent))
 
 
