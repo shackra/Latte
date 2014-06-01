@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Latte by flakas</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Latte</h1>
+        <h2>Automatic rule based time tracker for Linux</h2>
+        <a href="https://github.com/flakas/Latte" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="latte---linux-automatic-time-tracker" class="anchor" href="#latte---linux-automatic-time-tracker"><span class="octicon octicon-link"></span></a>Latte - Linux Automatic Time Tracker</h1>
+
+<p>A proof of concept automated time tracker, intended for Ubuntu Linux.</p>
+
+<p>Stable: <a href="http://travis-ci.org/flakas/Latte"><img src="https://secure.travis-ci.org/flakas/Latte.png?branch=master" alt="Build Status"></a>
+Development: <a href="http://travis-ci.org/flakas/Latte"><img src="https://secure.travis-ci.org/flakas/Latte.png?branch=development" alt="Build Status"></a></p>
+
+<h2>
+<a name="installing-and-upgrading" class="anchor" href="#installing-and-upgrading"><span class="octicon octicon-link"></span></a>Installing and upgrading</h2>
+
+<p>Install (upgrade) from the latest source:</p>
+
+<pre><code>git clone git://github.com/flakas/Latte.git
+cd Latte
+python setup.py install
+</code></pre>
+
+<p><em>OR</em></p>
+
+<p>Install via PIP (Python Package Index):</p>
+
+<pre><code>pip install latte
+</code></pre>
+
+<p>Upgrade via PIP:</p>
+
+<pre><code>pip install latte --upgrade
+</code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Configuration files are saved in <code>~/.config/latte</code> folder.</p>
+
+<p>Statistics files are stored in <code>~/.config/latte</code> folder (configurable)</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Run the binary script either in foreground:</p>
+
+<p><code>latte</code></p>
+
+<p>or in the background:
+<code>latte --silent &amp;</code></p>
+
+<p>To analyze log data you can use the built in analyzer:</p>
+
+<ul>
+<li>
+<code>lattestats</code> to analyze log data from past 24 hours</li>
+<li>
+<code>lattestats all</code>   Analyze all log data</li>
+<li>
+<code>lattestats X d</code> analyze log data from past X days, where X is any positive integer</li>
+<li>
+<code>lattestats X w</code> analyze log data from past X weeks, where X is any positive integer</li>
+<li>
+<code>lattestats X m</code> analyze log data from past X months, where X is any positive integer</li>
+<li>
+<code>lattestats X</code> analyze log data from past X seconds, where X is any positive integer</li>
+</ul><h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>This application requires:</p>
+
+<ul>
+<li>
+<code>xprop</code> to detect active window title for log tracking</li>
+</ul><p>These dependencies are optional, but without them some functionality will not work:</p>
+
+<ul>
+<li>
+<code>libX11.so</code> and <code>libXss.so</code> to detect whether user is inactive (packages <code>libx11-dev</code> and <code>libxss-dev</code>)</li>
+</ul><h2>
+<a name="goal" class="anchor" href="#goal"><span class="octicon octicon-link"></span></a>Goal</h2>
+
+<p>To build an Automatic Time Tracker for Linux that:</p>
+
+<ul>
+<li>keeps track of windows where the user spends time</li>
+<li>is aware if the user is active or not</li>
+<li>collects information for personal analysis and statistics</li>
+<li>can classify activities based on user defined rules</li>
+<li>ignores unwanted and sensitive information</li>
+</ul><p>All without any human intervention (except for the initial set up).</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT license, check LICENSE.txt</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/flakas/Latte/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/flakas/Latte/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/flakas/Latte"></a> is maintained by <a href="https://github.com/flakas">flakas</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
