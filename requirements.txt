@@ -1,3 +1,4 @@
 nose==1.1.2
 mock==0.8.0
 SQLAlchemy==0.8.0
+https://github.com/novocaine/rust-python-ext/zipball/master

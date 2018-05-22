@@ -1,0 +1,18 @@
+[package]
+name = "lattex11"
+version = "0.1.0"
+authors = ["Jorge Araya Navarro <jorge@esavara.cr>"]
+
+[lib]
+name = "lattex11"
+crate-type = ["cdylib"]
+
+[features]
+python27-sys = ["cpython/python27-sys"]
+
+[dependencies]
+x11 = ">=2.17.5"
+
+[dependencies.cpython]
+version = ">=0.2.0"
+default-features = false
